@@ -1,7 +1,7 @@
 # Build artifacts
 artifacts
 target
-
+.gradle/
 # IntelliJ IDEA project & module files
 .idea
 *.iml
@@ -20,4 +20,3 @@ todo.txt
 download.html
 done.txt
 jdk8migration.txt
-
