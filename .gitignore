@@ -4,19 +4,4 @@ target
 .gradle/
 # IntelliJ IDEA project & module files
 .idea
-*.iml
-
-out/
-gif/
-modules/test/
-uml/
 /build
-presentation.txt
-style-readme.txt
-widget.html
-todo-npe.txt
-todo-old.txt
-todo.txt
-download.html
-done.txt
-jdk8migration.txt
