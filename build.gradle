@@ -1,0 +1,80 @@
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "1.2.3"
+}
+
+ext.mainClass = 'exEDI.Main'
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+    mavenCentral()
+    maven {
+    	url 'https://raw.github.com/Ekito/maven-repo/master/releases'
+    }
+}
+
+sourceCompatibility = 1.8
+version = 'latest-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'weblaf',
+                   'Implementation-Version': version,
+                   'Main-Class': 'com.alee.laf.LibraryInfoDialog'
+    }
+}
+
+shadowJar {
+    dependencies {
+        exclude(dependency('com.google.android:android:.*'))
+        exclude(dependency('org.eclipse.swt.win32.win32:.*'))
+    }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
+    compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    // https://mvnrepository.com/artifact/net.htmlparser.jericho/jericho-html
+    compile group: 'net.htmlparser.jericho', name: 'jericho-html', version: '3.4'
+    // https://mvnrepository.com/artifact/com.fifesoft/rstaui
+    compile group: 'com.fifesoft', name: 'rstaui', version: '2.6.0'
+    // https://mvnrepository.com/artifact/com.mortennobel/java-image-scaling
+    compile group: 'com.mortennobel', name: 'java-image-scaling', version: '0.8.6'
+    compile fileTree(dir: 'lib').matching { include '*.jar'}
+}
+
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+            include '**/*.png'
+            include '**/*.data'
+            include '**/*.xml'
+            include '**/*.properties'
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}

@@ -10,7 +10,7 @@ out/
 gif/
 modules/test/
 uml/
-
+/build
 presentation.txt
 style-readme.txt
 widget.html
